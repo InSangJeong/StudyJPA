@@ -24,7 +24,7 @@ public class Order {
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     @Temporal(TemporalType.TIMESTAMP)

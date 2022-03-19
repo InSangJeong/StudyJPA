@@ -33,7 +33,9 @@ public class HelloController {
                 .orderPrice(1000)
                 .count(1)
                 .build();
+
         orderItems.add(orderItem);
+
 
         Order order = Order.builder()
                 .orderItems(orderItems)
@@ -45,8 +47,10 @@ public class HelloController {
                 .name("Test").street("11st").orders(orders).city("Seoul").build();
 
 
-        memberService.addMember(member);
+        order.setMember(member);
+        order.addOrderItem(orderItem);
 
+        memberService.addMember(member);
 
         return "done";
     }

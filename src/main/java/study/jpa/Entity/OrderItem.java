@@ -29,4 +29,9 @@ public class OrderItem {
     private int orderPrice;
     private int count;
 
+    public void setItem(Item Item){
+        this.item = Item;
+
+    }
+
 }

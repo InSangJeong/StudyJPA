@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,5 +20,14 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItem = new ArrayList<OrderItem>();
+
+    public void addOrderItem(OrderItem orderItem){
+        // FK관리는 OrderItem 클래스가 한다.
+        this.orderItem.add(orderItem); //Readonly
+        orderItem.setItem(this);        //연관관계 저장을 위해서 Owner에게 추가한다.
+    }
 
 }
