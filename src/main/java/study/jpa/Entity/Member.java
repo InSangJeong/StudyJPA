@@ -5,6 +5,7 @@ import study.jpa.Enum.RoleType;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +27,8 @@ public class Member {
     private String city;
     private String street;
     private String zipcode;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="ORDER_ID")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<Order>();
 
     //private Integer age;
     //@Enumerated(EnumType.STRING)//Enum 이름을 DB에 저장. ORDINAL 설정시 순서로 저장.
