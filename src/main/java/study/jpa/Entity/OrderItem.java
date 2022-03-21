@@ -3,7 +3,6 @@ package study.jpa.Entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="ORDER_ITEM")
@@ -19,11 +18,11 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="ITEM_ID")
+    @JoinColumn(name="ITEM_ID") //FK를 관리하므로 양방향 매핑시 주인이 된다.
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name="ORDER_ID")
+    @JoinColumn(name="ORDER_ID") //FK를 관리하므로 양방향 매핑시 주인이 된다.
     private Order order;
 
     private int orderPrice;
@@ -31,7 +30,13 @@ public class OrderItem {
 
     public void setItem(Item Item){
         this.item = Item;
-
+        if(!item.getOrderItems().contains(this))
+            item.addOrderItem(this);
     }
 
+    public void setOrder(Order order){
+        this.order = order;
+        if(!order.getOrderItems().contains(this))
+            order.addOrderItem(this);
+    }
 }

@@ -38,11 +38,13 @@ public class Order {
             this.member.getOrders().remove(this);
         }
         this.member = member;
-        member.getOrders().add(this);
+        if(!member.getOrders().contains(this))//반복 호출 방지.
+            member.getOrders().add(this);
     }
 
     public void addOrderItem(OrderItem orderItem){
         orderItems.add(orderItem);
-        orderItem.setOrder(this);
+        if(orderItem.getOrder() != this)//반복 호출 방지.
+            orderItem.setOrder(this);
     }
 }
