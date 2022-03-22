@@ -21,6 +21,9 @@ public class Item {
     private int price;
     private int stockQuantity;
 
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<Category>();
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 

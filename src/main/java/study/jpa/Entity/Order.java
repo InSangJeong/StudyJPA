@@ -22,10 +22,14 @@ public class Order {
 
     @ManyToOne  //Member FK 주인.
     @JoinColumn(name="MEMBER_ID")
-    private Member member;
+    private Member member;  //주문자
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)   //OrderItem의 Readonly
-    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private List<OrderItem> orderItems = new ArrayList<OrderItem>();    //주문정보
+
+    @OneToOne
+    @JoinColumn(name="DELIVERY_ID")
+    private Delivery delivery; //배송정보
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
@@ -46,5 +50,11 @@ public class Order {
         orderItems.add(orderItem);
         if(orderItem.getOrder() != this)//반복 호출 방지.
             orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+        if(delivery.getOrder() != this)
+            delivery.setOrder(this);
     }
 }
