@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name="ORDER_ID")

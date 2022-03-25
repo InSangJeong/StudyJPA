@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Access(AccessType.FIELD) // JPA가 필드에 직접 접근한다. PROPERTY로 설정시 Getter를 사용해서만 접근한다.
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name="MEMBER_ID")
