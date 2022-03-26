@@ -20,14 +20,14 @@ public class Order extends BaseEntity {
     @Column(name="ORDER_ID")
     private Long id;
 
-    @ManyToOne  //Member FK 주인.
+    @ManyToOne(fetch = FetchType.LAZY)  //Member FK 주인.
     @JoinColumn(name="MEMBER_ID")
     private Member member;  //주문자
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)   //OrderItem의 Readonly
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();    //주문정보
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="DELIVERY_ID")
     private Delivery delivery; //배송정보
 

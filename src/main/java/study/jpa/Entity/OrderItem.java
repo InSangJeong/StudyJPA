@@ -17,11 +17,11 @@ public class OrderItem {
     @Column(name="ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ITEM_ID") //FK를 관리하므로 양방향 매핑시 주인이 된다.
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ORDER_ID") //FK를 관리하므로 양방향 매핑시 주인이 된다.
     private Order order;
 
